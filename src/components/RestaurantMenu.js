@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestrauntMenu";
 import RestaurantCategory from "./RestaurantCategory";
 import { useState } from "react";
+import {useDispatch} from "react-redux";
+import {addItem} from "../utils/cartSlicer"
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
@@ -13,6 +15,8 @@ const RestaurantMenu = () => {
 
   const [showIndex, setShowIndex] = useState(null);
 
+  const dispatch = useDispatch()
+
   if (resInfo === null) return <Shimmer />;
   console.log(resInfo);
 
@@ -20,7 +24,11 @@ const RestaurantMenu = () => {
     resInfo?.cards[2]?.card?.card?.info;
 
   const itemCards  = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards;
-  console.log(itemCards)
+
+  const handleAddItem = (item) => {
+    dispatch(addItem(item))
+  }
+
     // const { itemCards } =
     // resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
 
@@ -45,7 +53,7 @@ const RestaurantMenu = () => {
             <li >
               <div className="m-3">
                 <span>{name} - Rs. {defaultPrice/100}</span>
-                <button className="p-1 m-1 bg-purple-100 rounded">Add</button>
+                <button className="p-1 m-1 bg-purple-100 rounded" onClick={(card) => handleAddItem(card.card.info)}>Add</button>
               </div>
             </li>
           );
