@@ -48,12 +48,12 @@ const RestaurantMenu = () => {
       </p>
       <ul>
         {itemCards.map((card) => {
-          const {name, defaultPrice} = card.card.info;
+          const {name, defaultPrice, price} = card.card.info;
           return (
             <li >
               <div className="m-3">
-                <span>{name} - Rs. {defaultPrice/100}</span>
-                <button className="p-1 m-1 bg-purple-100 rounded" onClick={(card) => handleAddItem(card.card.info)}>Add</button>
+                <span>{name} - Rs. {price ? Math.floor(price/100) : Math.floor(defaultPrice/100)}</span>
+                <button className="p-1 m-1 bg-purple-100 rounded" onClick={() => handleAddItem(card.card.info)}>Add</button>
               </div>
             </li>
           );
