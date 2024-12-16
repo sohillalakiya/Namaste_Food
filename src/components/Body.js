@@ -52,7 +52,7 @@ const Body = () => {
             }}
           />
           <button
-            className="px-4 py-2 bg-green-100 m-4 rounded-lg"
+            className="px-4 py-2 bg-green-100 m-4 rounded-lg" data-testid="search-btn"
             onClick={() => {
 
               const filteredRestaurant = listOfRestaurants.filter((res) =>
@@ -87,7 +87,7 @@ const Body = () => {
           />
         </div>
       </div>
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap" data-testid="res-list">
         {filteredRestaurant?.map((restaurant) => (
           <Link
             key={restaurant.info.id}

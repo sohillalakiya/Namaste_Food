@@ -1,4 +1,5 @@
 import { LOGO_URL } from "../utils/constants";
+import Logo from "../assets/Logo.png"
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
@@ -18,11 +19,11 @@ const Header = () => {
   return (
     <div className="flex justify-between bg-pink-100 shadow-lg sm:bg-yellow-50 lg:bg-green-50">
       <div className="logo-container">
-          
+      <img data-testid="logo" className="w-32" src={Logo} />
       </div>
       <div className="flex items-center">
         <ul className="flex p-4 m-4">
-          <li className="px-4">Online Status: {onlineStatus ? "✅" : "🔴"}</li>
+          <li className="px-4" data-testid="online-status">Online Status: {onlineStatus ? "✅" : "🔴"}</li>
           <li className="px-4">
             <Link to="/">Home</Link>
           </li>
@@ -36,7 +37,7 @@ const Header = () => {
             <Link to="/grocery">Grocery</Link>
           </li>
           <Link to="/cart">
-          <li className="px-4">Cart - {items.length}</li>
+          <li className="px-4" data-testid="cart">Cart - {items.length}</li>
           </Link>
           <button
             className="login"
